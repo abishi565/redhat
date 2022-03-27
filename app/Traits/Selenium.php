@@ -24,7 +24,7 @@ trait Selenium
 
     logger('in create driver');
     $options = new ChromeOptions();
-    $options->addArguments(['--no-sandbox', '--disable-dev-shm-usage', '--user-agent=' . $this->getUserAgent()]);
+    $options->addArguments(['--no-sandbox', '--disable-dev-shm-usage', "--ignore-certificate-errors", "--ignore-ssl-errors", "--start-maximized",'--disable-single-click-autofill', '--headless', '--user-agent=' . $this->getUserAgent()]);
     $caps = DesiredCapabilities::chrome();
     $caps->setCapability(ChromeOptions::CAPABILITY, $options);
     $this->driver = RemoteWebDriver::create($this->serverUrl, $caps, 60000, 60000);
